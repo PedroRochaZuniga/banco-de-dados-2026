@@ -129,7 +129,7 @@ Mostre quantas matrículas existem por semestre.
 
 
 
-#Questão 20
+# Questão 20
 Mostre os cursos que possuem mais de 1 aluno cadastrado.
 
 
