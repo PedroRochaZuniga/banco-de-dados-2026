@@ -23,7 +23,7 @@ Liste os alunos do curso de Computacao.
 Questão 4
 Liste os alunos que moram em Maringa.
 
-   select nome from aluno WHERE cidade = 'Maringa'
+    select nome from aluno WHERE cidade = 'Maringa'
 
 
 Questão 5
@@ -47,7 +47,7 @@ Liste os alunos que ingressaram a partir de 2022.
 Questão 8
 Liste os alunos cujo nome começa com a letra A.
 
-   select nome from aluno where nome like 'A%'
+    select nome from aluno where nome like 'A%'
 
 
 Questão 9
@@ -60,7 +60,7 @@ Liste os alunos dos cursos Computacao ou Engenharia.
 Questão 10
 Liste as disciplinas com carga horária entre 60 e 80 horas.
 
-  select nome from disciplina where carga_horaria >= 60 and carga_horaria <= 80
+    select nome from disciplina where carga_horaria >= 60 and carga_horaria <= 80
 
 
 Questão 11
@@ -97,7 +97,7 @@ Questão 15
 Calcule a soma das cargas horárias de todas as disciplinas.
 
 
-select sum(carga_horaria) from disciplina
+    select sum(carga_horaria) from disciplina
 
 
 
@@ -107,7 +107,7 @@ select sum(carga_horaria) from disciplina
 uestão 16
 Mostre a quantidade de alunos por curso.
 
-   select aluno.curso, count(aluno.nome) FROM aluno group by curso
+    select aluno.curso, count(aluno.nome) FROM aluno group by curso
 
 
 
@@ -120,7 +120,7 @@ Mostre a quantidade de alunos por cidade.
 Questão 18
 Mostre a média das notas por situação da matrícula.
 
-   select matricula.situacao, avg(matricula.nota) from matricula group by matricula.situacao
+    select matricula.situacao, avg(matricula.nota) from matricula group by matricula.situacao
 
 
 
