@@ -125,54 +125,110 @@ Mostre a média das notas por situação da matrícula.
 # Questão 19
 Mostre quantas matrículas existem por semestre.
 
-## Questão 20
+    select semestre, count(*) as quantidade_matriculas from matricula group by semestre;  
 
+## Questão 20
 Mostre os cursos que possuem mais de 1 aluno cadastrado.
+
+    select cursos, count(*) as quantidade_alunos 
+    from aluno 
+    group by curso having count(*) > 1
 
 ## Questão 21
-
 Liste o nome dos alunos e a situação de suas matrículas.
 
+    select aluno.nome, matricula.situacao
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id;
+    
 ## Questão 22
-
 Liste o nome dos alunos e o nome das disciplinas em que estão matriculados.
 
-## Questão 23
+    select aluno.nome, disciplina.nome
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    inner join disciplina
+    on disciplina.id = matricula.disciplina_id;
 
+## Questão 23
 Liste o nome do aluno, o nome da disciplina e a nota.
 
-## Questão 24
+    select aluno.nome, disciplina.nome, matricula.nota
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    inner join disciplina
+    ON disciplina.id = matricula.disciplina_id
 
+## Questão 24
 Liste apenas os alunos matriculados em disciplinas do departamento Computacao.
 
-## Questão 25
+    select distinct aluno.nome
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    inner join disciplina
+    on disciplina.id = matricula.disciplina_id
+    where disciplina.departamento = 'Computacao';
 
+
+## Questão 25
 Mostre o nome dos alunos que tiveram matrícula com situação Reprovado.
 
-## Questão 26
+    select distinct aluno.nome
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    where matricula.situacao = 'Reprovado';
 
+## Questão 26
 Mostre o nome dos alunos de Computacao e as disciplinas que eles cursaram.
 
-## Questão 27
+    select aluno.nome, disciplina.nome
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    inner join disciplina
+    on disciplina.id = matricula.disciplina_id
+    where aluno.curso = 'Computacao';
 
+## Questão 27
 Mostre a média de notas por aluno.
 
-## Questão 28
+    select aluno.nome, avg(matricula.nota) as media_notas
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    group by aluno.nome;
 
+## Questão 28
 Mostre a quantidade de disciplinas cursadas por cada aluno.
 
-## Questão 29
+    select aluno.nome, COUNT(matricula.disciplina_id) as quantidade_disciplinas
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    group by aluno.nome;
 
+## Questão 29
 Liste os alunos cuja média de notas foi maior que 8.
 
-## Questão 30
+    select aluno.nome, avg(matricula.nota) as media_notas
+    from aluno
+    inner join matricula
+    on aluno.id = matricula.aluno_id
+    group by aluno.nome
+    having avg(matricula.nota) > 8;
 
+## Questão 30
 Mostre o departamento e a quantidade de matrículas em disciplinas de cada departamento.
 
-
-
-
-# Questão 20
-Mostre os cursos que possuem mais de 1 aluno cadastrado.
-
+    select disciplina.departamento,
+    count(matricula.id) as quantidade_matriculas
+    from disciplina
+    inner join matricula
+    on disciplina.id = matricula.disciplina_id
+    group by disciplina.departamento;
 
