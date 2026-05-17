@@ -1,4 +1,4 @@
-# banco-de-dados-2026
+# Pedro Rocha Zuniga - Banco de Dados 2 - Lista 2
 
 
 # Questão 1
