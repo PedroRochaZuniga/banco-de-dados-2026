@@ -116,18 +116,35 @@ SET saldo = saldo - 50
 WHERE id = 1;
 
 
-
-
-session2: SELECT * FROM contas WHERE id = 1;
+DROP TABLE IF EXISTS movimentacoes;
+CREATE TABLE movimentacoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    conta_origem INT,
+    conta_destino INT,
+    valor DECIMAL(10,2),
+    data_movimentacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 START TRANSACTION;
 UPDATE contas
-SET saldo = saldo + 300
-WHERE id = 1;
+SET saldo = saldo - 120
+WHERE id = 2;
+UPDATE contas
+SET saldo = saldo + 120
+WHERE id = 3;
+INSERT INTO movimentacoes (conta_origem, conta_destino, valor)
+VALUES (2, 3, 120.00);
 COMMIT;
 
+SELECT * FROM contas;
+SELECT * FROM movimentacoes;
+
 
 START TRANSACTION;
 UPDATE contas
-SET saldo = saldo + 70
+SET saldo = saldo - 80
+WHERE id = 1;
+UPDATE contas
+SET saldo = saldo + 80
 WHERE id = 4;
+ROLLBACK;
