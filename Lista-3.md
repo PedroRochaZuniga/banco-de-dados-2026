@@ -332,6 +332,8 @@ CREATE TABLE movimentacoes (
 **Pergunta 18**  
 Qual é a importância de registrar movimentações além de atualizar os saldos?
 
+    Pois assim voce realiza um historico de operações para conferir dados e fraudes
+
 ---
 
 #### Etapa 10. Transferência com registro em histórico
@@ -423,8 +425,12 @@ SELECT * FROM movimentacoes;
 **Pergunta 23**  
 Como verificar se o banco permaneceu consistente após todas as operações realizadas?
 
+    Verificando o histórico de operações
+
 **Pergunta 24**  
 Por que a consistência do banco depende não apenas dos comandos SQL, mas também da forma como eles são agrupados em transações?
+
+    Pois existe uma dependencia das operações realizadas de forma correta e completa
 
 ---
 
