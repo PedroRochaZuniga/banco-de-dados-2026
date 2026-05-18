@@ -439,61 +439,108 @@ Por que a consistência do banco depende não apenas dos comandos SQL, mas tamb�
 ### Questão 25
 Explique o que é uma transação em banco de dados.
 
+    é um conjunt0 de operações determinda por consultas e buscas, tendo um início e fim, sendo obrigadas a serem concluidas
+
 ### Questão 26
 Descreva a diferença entre `COMMIT` e `ROLLBACK`.
+
+    A diferena entre commit e rollback é que o commit indica o final de uma transação e o rollback é o cancelamento das linhas selecionadas, seja ela uma transação ou operação
 
 ### Questão 27
 Explique por que uma transferência bancária deve ser tratada como transação.
 
+    Pois depende de múltiplos parámetros e operações de buscas e consultas, além de ser sucetivel a erros
+
 ### Questão 28
 O que pode acontecer se duas transações alterarem o mesmo dado ao mesmo tempo sem controle de concorrência?
+
+    Pode ocorrer um conflito de dados, perdendo alguma informação decorrente da outra
 
 ### Questão 29
 Qual a relação entre transações e as propriedades ACID?
 
+    As transações implementamn as prorpiedas acid
+    
+
 ### Questão 30
 Explique o significado da propriedade de atomicidade no contexto de uma operação bancária.
 
+    Atomicidade significa que uma operação deve ocorrer 100% ou não e no banco, devem ocorrer diversas operações
+    como por exemplo, crédito e débito ocorrendo juntos
+
 ### Questão 31
 Explique o que significa dizer que uma transação preserva a consistência do banco de dados.
+    
+    Significa que uma transação respeita as regras de integridade
 
 ### Questão 32
 Descreva o papel do isolamento em ambientes com múltiplos usuários acessando o mesmo banco.
 
+    O isolamento impede que transações concorrente interfiram de forma conflituosa uma nas outras
+    Assim, vários usuários tendo uma resposta confiave sobre os dados, por exemplo descnto em produto
+
 ### Questão 33
 Explique a importância da durabilidade após a execução de um `COMMIT`.
+
+    A durabilidade garatne que os dados serão salvos de forma segura após o commit, mesmo em falha do sistena
 
 ### Questão 34
 O que é controle de concorrência e por que ele é necessário?
 
+    Controle de concorrencia é a forma de tratamento entre controlar transações simultanes e evitar conflitos
+    é neccesário, pois na vidad real os bancos são usados por vários usuários ao mesmo tempo
+
 ### Questão 35
 Explique a função do lock em transações concorrentes.
+
+    O lock bloqueia temporariamente acesso concorrente a dados tilizados por uma transação, ex escolher assento no avião
 
 ### Questão 36
 Descreva um exemplo prático em que o `FOR UPDATE` seja necessário.
 
+    O for uptade pode ser utilizado quando deve bloquear uma conta bancária enquanto o saldo está sendo atualizado
+
 ### Questão 37
 O que é uma atualização perdida (*lost update*)?
+
+    É quando uma atualização é perdida devido ao conflito de acesso simultaneo e sobrescreveram este dado simultaneamente
 
 ### Questão 38
 Explique por que nem toda leitura concorrente gera problema, mas algumas atualizações simultâneas sim.
 
+    Pois a leitura não impacta diretamente o banco de dados, já as atualizações podem mudar os valores de registros do banco
+
 ### Questão 39
 Qual é a importância de registrar operações em uma tabela de histórico dentro da mesma transação?
+
+    Pois garante sincronização entre os dados principais e o histórico deles
 
 ### Questão 40
 Em um sistema acadêmico, cite um exemplo de operação que deveria ser tratada como transação.
 
+    Registraruma matricla de um aluno específico em um curso exterior ao dele, mexendo na sua carga horária e notas
+
 ### Questão 41
 Em um sistema de estoque, cite um exemplo de falha que poderia justificar o uso de `ROLLBACK`.
 
+    Uma venda cancelada, ou estoque real diferente do estoque no sistema, perca de produtos
+
 ### Questão 42
 Como o processamento de transações contribui para a confiabilidade de sistemas de informação?
+
+    O processamento de transações aumenta a confiabilidade garantindo integridade, segurança e consistência dos dados.
 
 ---
 
 ### Questão 43
 Considerando todos os experimentos realizados, explique de forma integrada como atomicidade, consistência, isolamento e durabilidade atuam em conjunto no processamento de transações.
+
+    Atomicidade: garante que todas as operações sejam realizadas integralmente ou não sejam nem realizadas
+    Consistencia: mantém todos os vãlidos antes e depois da transação
+    Isolamento: evita interferencia entre transações simultaneas
+    Durabilidade: garante guaradar os dados de forma segura após o commit
+
+    Assim, elas tornam o banco confiável, mesmo em ambientes sujeitos a falhas
 
 ---
 
@@ -506,7 +553,19 @@ Adapte o exemplo bancário para um sistema de matrícula em disciplinas, em que 
 - reduzir a quantidade de vagas
 - registrar a matrícula do aluno
 
-Explique por que essas operações devem ocorrer na mesma transação.
+Explique por que essas operações devem ocorrer na mesma transação.]
+
+    Essas operações precisam estar na mesma transação porque dependem umas das outras.
+    Sem isso, poderiam ocorrer matrículas sem vaga disponível ou vagas reduzidas sem matrícula registrada.    
 
 ### Questão 45
 Adapte o exemplo para um sistema de estoque e vendas, explicando quais operações devem ser agrupadas para evitar inconsistências.
+
+    - Registrar venda
+    - Reduzir estoque
+    - Registrar pagamento]
+    - Guardar historico
+    - Emitir nota fiscal
+
+    Elas devem ser agrupadas para evitar inconsistencias, como venda registradas sem atualização no estoque ou sem a confirmação na venda  e registro no historico, não emitindo a nota fiscal
+    
