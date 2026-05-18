@@ -24,11 +24,13 @@ SELECT * FROM contas;
 
 **Pergunta 1**  
 Qual é o objetivo da tabela `contas` neste cenário prático?
-  Apresentar os titulares, assim como registrar seus id e saldos
+    
+    Apresentar os titulares, assim como registrar seus id e saldos
 
 **Pergunta 2**  
 Quais são os saldos iniciais de cada titular antes da execução das transações?
-  1000,500,300,800
+    
+    1000,500,300,800
   
 
 ---
@@ -59,12 +61,14 @@ SELECT * FROM contas;
 
 **Pergunta 3**  
 O que aconteceu com os saldos após o `COMMIT`?
-  Houve transação do saldo de id 1 e 2, em 100 reais.
+  
+    Houve transação do saldo de id 1 e 2, em 100 reais.
   
 
 **Pergunta 4**  
 Por que as duas instruções `UPDATE` devem fazer parte da mesma transação?
-  Pois cada uptade se refere a uma atualização de um termo especifico na tabela.
+    
+    Pois cada uptade se refere a uma atualização de um termo especifico na tabela, caso só uma fosse executada, poderia ocorrer inconstitencia
 ---
 
 #### Etapa 3. Testar ROLLBACK
@@ -94,8 +98,12 @@ SELECT * FROM contas;
 **Pergunta 5**  
 Por que os valores não foram alterados ao final?
 
+    Pois o comando ROLLBACK foi executado, e ele é meio que um crl + z
+
 **Pergunta 6**  
 Em quais situações reais o uso de `ROLLBACK` seria essencial?
+
+    Em falahas do sistema, erro de calculo, saldo insuficiente, perda de conexão e ente outros
 
 ---
 
@@ -124,8 +132,12 @@ SELECT * FROM contas WHERE id = 3;
 **Pergunta 7**  
 Por que a transação foi desfeita neste caso?
 
+        Pois gerou um saldo inválido
+
 **Pergunta 8**  
 Qual problema de integridade poderia ocorrer se essa transação fosse confirmada?
+
+    Problema de inconsistência, como saldo negativo 
 
 ---
 
@@ -160,8 +172,14 @@ SELECT * FROM contas;
 **Pergunta 9**  
 Qual conta foi debitada e quais contas foram creditadas?
 
+    A conta debitada foi a de id = 4, Daniela
+
+    E as creditadas foi a de id = 1 e  id = 2, Ana e Bruno
+
 **Pergunta 10**  
 Por que esse conjunto de operações também deve ser tratado como uma única transação?
+
+    Para não gerar um estado fraturado no sistema, já que elas fazem parte de apenas uma intenção
 
 ---
 
@@ -192,8 +210,12 @@ ROLLBACK;
 **Pergunta 11**  
 Qual era o objetivo de observar o valor da conta em outra sessão antes do `COMMIT`?
 
+    O objetivo era visualizar se outra sessão conseguiria visualizar alterações ainda não confirmadas, para não alterar e dar conflito na tabela original
+
 **Pergunta 12**  
 Como esse teste se relaciona com o conceito de isolamento?
+
+    Esse teste se relaciona com o conceito de isolamento, pois estamos tratando essa operação em outra seção minimizabdo o conflito entre as operações
 
 ---
 
@@ -239,11 +261,17 @@ Depois finalize a Sessão 2.
 **Pergunta 13**  
 O que aconteceu com a segunda transação?
 
+        Ficou esperando a primeira transação ser confirmada
+
 **Pergunta 14**  
 Por que ela precisou esperar?
 
+    Pois a outra transação estaca utilizando o mesmo aspecto de tratatmento de dados
+
 **Pergunta 15**  
 Qual a função do `FOR UPDATE`?
+
+    Bloqueia as linhas retornadas pelo select até o fim da transação 
 
 ---
 
@@ -276,8 +304,12 @@ Depois execute `COMMIT` em ambas.
 **Pergunta 16**  
 Por que nesse caso as transações tendem a não disputar o mesmo recurso?
 
+    Porque cada transação alterava registros diferentes da tabela, evitando disputa pelo mesmo lock.
+
 **Pergunta 17**  
 O que esse teste mostra sobre concorrência em linhas diferentes da tabela?
+
+    Mostra que o banco consegue executar transações simultâneas quando elas atuam em linhas diferentes.
 
 ---
 
@@ -332,9 +364,13 @@ SELECT * FROM movimentacoes;
 
 **Pergunta 19**  
 Por que o `INSERT` na tabela `movimentacoes` deve estar na mesma transação dos `UPDATE`s?
+    
+    Porque o histórico e os saldos precisam permanecer sincronizados
 
 **Pergunta 20**  
 O que poderia acontecer se o histórico fosse gravado, mas os saldos não fossem atualizados, ou vice-versa?
+
+    Poderia houver uma perda de informação e conflito entre dados reais e no "papel"
 
 ---
 
@@ -366,8 +402,12 @@ SELECT * FROM movimentacoes;
 **Pergunta 21**  
 O que o `ROLLBACK` garantiu nesse cenário?
 
+    Ele garantiu que nenhuma alteração parcial contiuasse salvada no banco
+
 **Pergunta 22**  
 Como esse teste demonstra a propriedade de atomicidade?
+
+    Esse teste demonstra atomicidade pois todas as informações da transação foram canceladas juntas
 
 ---
 
