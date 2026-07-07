@@ -586,6 +586,8 @@ db.historico.insertMany([
 ### Exercício 1
 Liste todos os documentos da coleção `usuarios`.
 
+    db.usuarios.find()
+
 ### Exercício 2
 Liste todos os documentos da coleção `conteudos`.
 
