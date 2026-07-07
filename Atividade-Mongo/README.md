@@ -588,7 +588,7 @@ Liste todos os documentos da coleção `usuarios`.
 
     db.usuarios.find()
     
-    <img width="683" height="884" alt="Captura de tela 2026-07-06 221501" src="https://github.com/user-attachments/assets/83e95fe8-a639-4f02-baf6-2b0c63ada389" />
+<img width="683" height="884" alt="Captura de tela 2026-07-06 221501" src="https://github.com/user-attachments/assets/83e95fe8-a639-4f02-baf6-2b0c63ada389" />
 
 
 ### Exercício 2
@@ -596,7 +596,7 @@ Liste todos os documentos da coleção `conteudos`.
 
     db.conteudos.find()
     
-    <img width="698" height="878" alt="Captura de tela 2026-07-06 221654 - Copia" src="https://github.com/user-attachments/assets/9254ce8d-5e7e-42fd-9046-99acbfade20e" />
+<img width="698" height="878" alt="Captura de tela 2026-07-06 221654 - Copia" src="https://github.com/user-attachments/assets/9254ce8d-5e7e-42fd-9046-99acbfade20e" />
 
 
 ### Exercício 3
